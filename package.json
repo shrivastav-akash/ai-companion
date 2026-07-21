@@ -1,0 +1,14 @@
+{
+  "name": "ai-companion",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w @companion/server\" \"npm run dev -w @companion/web\"",
+    "build": "npm run build -w @companion/shared && npm run build -w @companion/server && npm run build -w @companion/web",
+    "typecheck": "npm run typecheck -w @companion/shared && npm run typecheck -w @companion/server && npm run typecheck -w @companion/web",
+    "db:migrate": "npm run db:migrate -w @companion/server"
+  },
+  "devDependencies": {"concurrently": "^9.1.2"},
+  "engines": {"node": ">=20"}
+}
