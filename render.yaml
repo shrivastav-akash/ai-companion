@@ -4,7 +4,7 @@ services:
     runtime: node
     plan: free
     buildCommand: npm install && npm run build -w @companion/shared && npm run build -w @companion/server
-    startCommand: npm run db:migrate && node apps/server/dist/index.js
+    startCommand: node apps/server/dist/db/migrate.js && node apps/server/dist/index.js
     healthCheckPath: /health
     envVars:
       - key: NODE_VERSION
