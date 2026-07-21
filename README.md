@@ -1,43 +1,55 @@
 # AI Companion
 
-A simple demo README for the AI Companion project.
+A mobile-first, persistent AI companion designed for natural text and voice conversations, long-term contextual memory, thoughtful follow-up questions, and life/relationship reflection.
 
-## Overview
-AI Companion is a demo project showcasing an assistant that integrates AI features. This README provides a minimal setup and usage guide so others can run and explore the project.
+## Current milestone
 
-## Features
-- Interactive AI assistant demo
-- Example usage and quick-start setup
+This branch implements the first working text + memory vertical slice:
 
-## Quick Start
+- React + TypeScript responsive PWA
+- Node.js + TypeScript API
+- PostgreSQL + pgvector
+- Persistent conversations and messages
+- Companion behavioral prompt
+- Semantic memory retrieval
+- Automatic memory extraction (no `/remember` or other commands)
+- Memory categories for facts, episodes, people, beliefs, hypotheses, patterns, and open threads
+- Voice UI entry points reserved for the next milestone
 
-1. Clone the repository:
-   git clone https://github.com/shrivastav-akash/ai-companion.git
-2. Change into the project directory:
-   cd ai-companion
-3. (Optional) Create and activate a Python virtual environment:
-   python -m venv .venv
-   source .venv/bin/activate  # macOS/Linux
-   .venv\\Scripts\\activate     # Windows
-4. Install dependencies (if any):
-   pip install -r requirements.txt
+## Local setup
 
-## Run the Demo
+Requirements: Node.js 20+, npm, Docker.
 
-If there is a demo script, run it as shown below (replace with actual command if available):
+```bash
+cp .env.example .env
+# Add OPENAI_API_KEY to .env
 
-    python demo.py
+docker compose up -d
+npm install
+npm run db:migrate
+npm run dev
+```
 
-## Configuration
+Web: `http://localhost:5173`
 
-- Add API keys or environment variables to a `.env` file if needed:
+API health: `http://localhost:4000/health`
 
-  OPENAI_API_KEY=your_key_here
+## Memory principles
 
-## Contributing
+- Memory extraction is automatic.
+- Trivial chatter should not become durable memory.
+- User interpretations are stored as beliefs, not facts.
+- Agent hypotheses are kept separate from facts.
+- Behavioral patterns require repeated evidence.
+- Open threads capture unresolved situations worth naturally revisiting.
+- Relevant memories are retrieved semantically rather than injecting the full history into every request.
 
-Contributions are welcome. Please open an issue or a pull request with proposed changes.
+## V1 roadmap
 
-## Contact
+1. Text + persistent memory foundation (this milestone)
+2. Memory consolidation/deduplication and stronger people/open-thread handling
+3. Turn-based realtime voice: listen until the user finishes, then respond
+4. Shared text/voice transcripts and memory
+5. Reflections and longer-term pattern surfacing
 
-Maintained by @shrivastav-akash
+> This project is a personal companion, not a replacement for professional medical, mental-health, legal, or emergency support.
